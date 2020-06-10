@@ -1,21 +1,19 @@
 import React from 'react';
 import './styles.scss';
 
-let list = [];
-
 const TransactionHistory = ({ items }) => {
   let i = 1;
-  items.forEach(element => {
+  const list = items.map(({ id, type, amount, currency }) => {
     i += 1;
-    list.push(
+    return (
       <tr
-        key={element.id}
+        key={id}
         style={{ backgroundColor: i % 2 > 0 ? '#a6deff' : '#ffffff' }}
       >
-        <td>{element.type}</td>
-        <td>{element.amount}</td>
-        <td>{element.currency}</td>
-      </tr>,
+        <td>{type}</td>
+        <td>{amount}</td>
+        <td>{currency}</td>
+      </tr>
     );
   });
   return (

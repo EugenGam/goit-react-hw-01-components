@@ -13,21 +13,22 @@ const colors = [
   '#8fa89c',
 ];
 
+let colorId = arr =>
+  arr[Math.floor(Math.random() * Math.floor(colors.length - 1))];
+
 const Statistics = ({ stats }, title) => {
-  let line = [];
-  stats.forEach(element => {
-    let colorId = Math.floor(Math.random() * Math.floor(colors.length - 1));
-    line.push(
+  const line = stats.map(({ id, label, percentage }) => {
+    return (
       <li
         className="item"
-        key={element.id}
+        key={id}
         style={{
-          backgroundColor: `${colors[colorId]}`,
+          backgroundColor: colorId(colors),
         }}
       >
-        <span className="label">{element.label}</span>
-        <span className="percentage">{element.percentage}</span>
-      </li>,
+        <span className="label">{label}</span>
+        <span className="percentage">{percentage}</span>
+      </li>
     );
   });
   return (
